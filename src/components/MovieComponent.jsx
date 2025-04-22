@@ -33,10 +33,11 @@ const MovieComponent = () => {
   const titleContainerRef = useRef(null);
   const [shouldScroll, setShouldScroll] = useState(false);
   const navigate = useNavigate();
+  const lightMode = useSelector((state) => state.color.isDarkMode);
   const showShare = useSelector((state) => state.movieDetails.showShare);
   const shareBtnRef = useRef();
   const { id } = useParams();
-  const isLoggedIn=useSelector((state)=>state.auth.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const movieDetailsHydrated = useSelector(
     (state) => state.movieDetails.movieDetailsHydrated
   );
@@ -274,7 +275,7 @@ const MovieComponent = () => {
       background: "linear-gradient(to right, #fff, #aaa)",
       WebkitBackgroundClip: "text",
       backgroundClip: "text",
-      color: "white",
+      color: !isMobile ? "white" : lightMode ? "black" : "white",
       whiteSpace: isMobile ? "normal" : "nowrap",
     },
     overview: {
@@ -310,7 +311,7 @@ const MovieComponent = () => {
         : "1.1rem",
       lineHeight: "1.7",
       fontWeight: 500,
-      color: "#f8f8f8",
+      color: !isMobile ? "white" : lightMode ? "black" : "white",
       opacity: 0.9,
       fontFamily: "'Baloo Bhai 2', sans-serif",
       width: isSmallMobile
@@ -405,13 +406,13 @@ const MovieComponent = () => {
         : "0.9rem",
       fontFamily: "'Baloo Bhai 2', sans-serif",
       fontWeight: 600,
-      color: "#fff",
       boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)",
       backdropFilter: "blur(4px)",
       transition: "all 0.3s ease",
       cursor: "pointer",
       border: "1px solid rgba(255, 255, 255, 0.3)",
       letterSpacing: "0.5px",
+      color: !isMobile ? "white" : lightMode ? "black" : "white",
     },
     buttons: {
       display: "flex",
@@ -687,7 +688,7 @@ const MovieComponent = () => {
             <p style={heroStyles.overviewText}>{movie?.overview}</p>
           </div>
 
-          <div style={heroStyles.metaData}>
+          <div style={{...heroStyles.metaData,  color: !isMobile ? "white" : lightMode ? "black" : "white",}}>
             <span>📅 {movie?.release_date?.slice(0, 4) || "N/A"}</span>
             <span style={{ opacity: 0.6 }}>|</span>
             <span>
@@ -742,7 +743,7 @@ const MovieComponent = () => {
                 e.currentTarget.style.transform = "scale(1)";
               }}
               onClick={() => {
-                if(isLoggedIn===false){
+                if (isLoggedIn === false) {
                   dispatch(setLoginWindow(true));
                   return;
                 }
@@ -771,12 +772,12 @@ const MovieComponent = () => {
                   : "linear-gradient(135deg, rgba(109, 109, 110, 0.9), rgba(169, 169, 170, 0.9))",
               }}
               onClick={() => {
-                if(isLoggedIn===false){
+                if (isLoggedIn === false) {
                   dispatch(setLoginWindow(true));
                   return;
                 }
-                dispatch(toggleWatchList(movie?.id))}
-              }
+                dispatch(toggleWatchList(movie?.id));
+              }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background =
                   "linear-gradient(135deg, rgba(149, 149, 150, 1), rgba(209, 209, 210, 1))";
@@ -859,12 +860,12 @@ const MovieComponent = () => {
             e.currentTarget.style.transform = "scale(1)";
           }}
           onClick={() => {
-            if(isLoggedIn===false){
+            if (isLoggedIn === false) {
               dispatch(setLoginWindow(true));
               return;
             }
-            dispatch(toggleWatchedMovies(movie?.id))}
-          }
+            dispatch(toggleWatchedMovies(movie?.id));
+          }}
         >
           <img
             src={
