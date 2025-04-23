@@ -54,7 +54,7 @@ const SignUp = () => {
     account.createOAuth2Session(
       "google",
       window.location.href,
-      "http://localhost:5173/auth-error"
+      "https://mad4movies.vercel.app/auth-error"
     );
   }
 
@@ -114,7 +114,7 @@ const SignUp = () => {
     try {
       await signup(localEmail, localPass, localName);
       window.location.reload();
-    } catch  {
+    } catch {
       console.log("");
     }
   }

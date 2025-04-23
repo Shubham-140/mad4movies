@@ -40,7 +40,7 @@ export const logout = async () => {
 
 export const sendVerificationEmail = async () => {
     try {
-        await account.createVerification("http://localhost:5173/email-verify");
+        await account.createVerification("http://mad4movies.vercel.app/email-verify");
         console.log("verification mail sent");
     }
     catch (error) {
@@ -50,7 +50,7 @@ export const sendVerificationEmail = async () => {
 
 export const resetPassword = async (email) => {
     try {
-        await account.createRecovery(email, "http://localhost:5173/reset-password");
+        await account.createRecovery(email, "http://mad4movies.vercel.app:5173/reset-password");
         console.log("Reset mail sent to your inbox");
     }
     catch (error) {

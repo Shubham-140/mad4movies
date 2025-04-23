@@ -53,7 +53,7 @@ const Login = () => {
     account.createOAuth2Session(
       "google",
       window.location.href,
-      "http://localhost:5173/auth-error"
+      "https://mad4movies.vercel.app/auth-error"
     );
   };
 
