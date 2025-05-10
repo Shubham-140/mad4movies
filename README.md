@@ -36,12 +36,6 @@ Mad4Movies is a full-featured React-based movie recommendation web application b
   - Watched movies
   - Reviews
 
-### 🤖 Personalized Movie Recommendations
-- Based on:
-  - Liked genres
-  - Watchlist patterns
-  - Highly rated movies by user
-
 ### 🗣️ Community Section
 - Post reviews & discussions.
 - Like & comment on posts.
