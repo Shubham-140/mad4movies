@@ -50,10 +50,6 @@ Mad4Movies is a full-featured React-based movie recommendation web application b
   - Top movies
   - Related content
 
-### 📌 Watchlist & Movie Planner
-- Custom movie collections (e.g., "Weekend Binge", "Top Thrillers").
-- Share watchlists with others.
-
 ### 🎨 Advanced UI/UX
 - Dark mode & theme switching.
 - Animations with Framer Motion.
