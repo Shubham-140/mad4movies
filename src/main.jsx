@@ -1,4 +1,5 @@
 import { createRoot } from "react-dom/client";
+import { lazy, Suspense } from "react";
 import App from "./App.jsx";
 import {
   createBrowserRouter,
@@ -8,35 +9,45 @@ import {
 import { Provider } from "react-redux";
 import store from "./app/store.js";
 import Hero from "./components/Hero.jsx";
-import "./index.css";
 import Trending from "./components/Trending.jsx";
 import Theatres from "./components/Theatres.jsx";
-import Contact from "./components/Contact.jsx";
-import About from "./components/About.jsx";
-import RecommendedMovies from "./components/RecommendedMovies.jsx";
-import PrivacyPolicy from "./components/PrivactPolicy.jsx";
-import TermsOfService from "./components/TermsOfService.jsx";
-import MovieComponent from "./components/MovieComponent.jsx";
 import Upcoming from "./components/Upcoming.jsx";
 import FAQ from "./components/FAQ.jsx";
-import TrendingMovies from "./components/TrendingMovies.jsx";
-import UpcomingMovies from "./components/UpcomingMovies.jsx";
-import InCinemasMovies from "./components/InCinemasMovies.jsx";
-import MovieSearchResults from "./components/MovieSearchResults.jsx";
-import TopRated from "./components/TopRated.jsx";
-import WatchList from "./components/Watchlist.jsx";
-import FavoriteList from "./components/FavoriteList.jsx";
-import PersonProfile from "./components/PersonProfile.jsx";
-import GenreFilteredMoviesCards from "./components/GenreFilteredMoviesCards.jsx";
-import RecentlyViewedMovies from "./components/RecentlyViewedMovies.jsx";
-import MyProfile from "./components/MyProfile.jsx";
-import AuthError from "./components/AuthError.jsx";
-import Blog from "./components/Blog.jsx";
-import Cookies from "./components/Cookies.jsx";
-import EmailVerification from "./components/EmailVerification.jsx";
-import ResetPassword from "./components/ResetPassword.jsx";
-import CheckInbox from "./components/CheckInbox.jsx";
-import Settings from "./components/Settings.jsx";
+import "./index.css";
+const Contact = lazy(() => import("./components/Contact.jsx"));
+const About = lazy(() => import("./components/About.jsx"));
+const RecommendedMovies = lazy(() =>
+  import("./components/RecommendedMovies.jsx")
+);
+const PrivacyPolicy = lazy(() => import("./components/PrivactPolicy.jsx"));
+const TermsOfService = lazy(() => import("./components/TermsOfService.jsx"));
+const MovieComponent = lazy(() => import("./components/MovieComponent.jsx"));
+const TrendingMovies = lazy(() => import("./components/TrendingMovies.jsx"));
+const UpcomingMovies = lazy(() => import("./components/UpcomingMovies.jsx"));
+const InCinemasMovies = lazy(() => import("./components/InCinemasMovies.jsx"));
+const MovieSearchResults = lazy(() =>
+  import("./components/MovieSearchResults.jsx")
+);
+const TopRated = lazy(() => import("./components/TopRated.jsx"));
+const WatchList = lazy(() => import("./components/Watchlist.jsx"));
+const FavoriteList = lazy(() => import("./components/FavoriteList.jsx"));
+const PersonProfile = lazy(() => import("./components/PersonProfile.jsx"));
+const GenreFilteredMoviesCards = lazy(() =>
+  import("./components/GenreFilteredMoviesCards.jsx")
+);
+const RecentlyViewedMovies = lazy(() =>
+  import("./components/RecentlyViewedMovies.jsx")
+);
+const MyProfile = lazy(() => import("./components/MyProfile.jsx"));
+const AuthError = lazy(() => import("./components/AuthError.jsx"));
+const Blog = lazy(() => import("./components/Blog.jsx"));
+const Cookies = lazy(() => import("./components/Cookies.jsx"));
+const EmailVerification = lazy(() =>
+  import("./components/EmailVerification.jsx")
+);
+const ResetPassword = lazy(() => import("./components/ResetPassword.jsx"));
+const CheckInbox = lazy(() => import("./components/CheckInbox.jsx"));
+const Settings = lazy(() => import("./components/Settings.jsx"));
 
 const router = createBrowserRouter([
   {
@@ -57,100 +68,196 @@ const router = createBrowserRouter([
       },
       {
         path: "/contact",
-        element: <Contact />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Contact />
+          </Suspense>
+        ),
       },
       {
         path: "/about",
-        element: <About />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <About />
+          </Suspense>
+        ),
       },
       {
         path: "/recommended-movies",
-        element: <RecommendedMovies />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <RecommendedMovies />
+          </Suspense>
+        ),
       },
       {
         path: "/privacy-policy",
-        element: <PrivacyPolicy />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <PrivacyPolicy />
+          </Suspense>
+        ),
       },
       {
         path: "/terms",
-        element: <TermsOfService />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <TermsOfService />
+          </Suspense>
+        ),
       },
       {
         path: "/movie/:id/:title",
-        element: <MovieComponent />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <MovieComponent />
+          </Suspense>
+        ),
       },
       {
         path: "/trending-movies",
-        element: <TrendingMovies />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <TrendingMovies />
+          </Suspense>
+        ),
       },
       {
         path: "/upcoming-movies",
-        element: <UpcomingMovies />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <UpcomingMovies />
+          </Suspense>
+        ),
       },
       {
         path: "/in-theatres",
-        element: <InCinemasMovies />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <InCinemasMovies />
+          </Suspense>
+        ),
       },
       {
         path: "/search-results/:query",
-        element: <MovieSearchResults />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <MovieSearchResults />
+          </Suspense>
+        ),
       },
       {
         path: "/top-rated-movies",
-        element: <TopRated />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <TopRated />
+          </Suspense>
+        ),
       },
       {
         path: "/watchlist",
-        element: <WatchList />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <WatchList />
+          </Suspense>
+        ),
       },
       {
         path: "/favorites",
-        element: <FavoriteList />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <FavoriteList />
+          </Suspense>
+        ),
       },
       {
         path: "/profile/:ID/:name",
-        element: <PersonProfile />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <PersonProfile />
+          </Suspense>
+        ),
       },
       {
         path: "/movies/genre/:genreId",
-        element: <GenreFilteredMoviesCards />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <GenreFilteredMoviesCards />
+          </Suspense>
+        ),
       },
       {
         path: "/recently-viewed",
-        element: <RecentlyViewedMovies />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <RecentlyViewedMovies />
+          </Suspense>
+        ),
       },
       {
         path: "/my-profile",
-        element: <MyProfile />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <MyProfile />
+          </Suspense>
+        ),
       },
       {
         path: "/auth-error",
-        element: <AuthError />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <AuthError />
+          </Suspense>
+        ),
       },
       {
         path: "/blog",
-        element: <Blog />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Blog />
+          </Suspense>
+        ),
       },
       {
         path: "/cookie-policy",
-        element: <Cookies />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Cookies />
+          </Suspense>
+        ),
       },
       {
-        path:'/email-verify',
-        element:<EmailVerification/>
+        path: "/email-verify",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <EmailVerification />
+          </Suspense>
+        ),
       },
       {
-        path:'/check-inbox',
-        element:<CheckInbox/>
+        path: "/check-inbox",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <CheckInbox />
+          </Suspense>
+        ),
       },
       {
-        path:'/reset-password',
-        element:<ResetPassword/>
+        path: "/reset-password",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <ResetPassword />
+          </Suspense>
+        ),
       },
       {
-        path:'/my-settings',
-        element:<Settings/>
-      }
+        path: "/my-settings",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Settings />
+          </Suspense>
+        ),
+      },
     ],
   },
   {
@@ -158,9 +265,9 @@ const router = createBrowserRouter([
     element: <Navigate to="/" />,
   },
   {
-    path:"*",
-    element:<Navigate to="/"/>
-  }
+    path: "*",
+    element: <Navigate to="/" />,
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(
