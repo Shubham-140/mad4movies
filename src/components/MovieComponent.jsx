@@ -21,6 +21,7 @@ import More from "./More";
 import { useNavigate, useParams } from "react-router-dom";
 import Share from "./Share";
 import { setLoginWindow } from "../features/AuthSlice";
+import { useQuery } from "@tanstack/react-query";
 
 const MovieComponent = () => {
   const [movie, setMovie] = useState({});
@@ -38,9 +39,6 @@ const MovieComponent = () => {
   const shareBtnRef = useRef();
   const { id } = useParams();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const movieDetailsHydrated = useSelector(
-    (state) => state.movieDetails.movieDetailsHydrated
-  );
 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isSmallMobile, setIsSmallMobile] = useState(window.innerWidth < 400);
@@ -97,22 +95,24 @@ const MovieComponent = () => {
     };
   }, [movie?.title]);
 
-  useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=${
-        import.meta.env.VITE_TMDB_API_KEY
-      }`
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setMovie(data);
-      });
-    if (movieDetailsHydrated) {
-      dispatch(setRecentlyViewed(id));
-    }
-  }, [id, dispatch, movieDetailsHydrated]);
+  const {} = useQuery({
+    queryKey: ["movie", id],
+    queryFn: () =>
+      fetch(
+        `https://api.themoviedb.org/3/movie/${id}?api_key=${
+          import.meta.env.VITE_TMDB_API_KEY
+        }`
+      )
+        .then((response) => {
+          return response?.json();
+        })
+        .then((data) => {
+          setMovie(data);
+        }),
+    staleTime: 1000 * 60 * 60 * 24,
+    cacheTime: 1000 * 60 * 60 * 24 * 2,
+    onSuccess:()=>dispatch(setRecentlyViewed(id))
+  });
 
   const heroStyles = {
     container: {
@@ -688,7 +688,12 @@ const MovieComponent = () => {
             <p style={heroStyles.overviewText}>{movie?.overview}</p>
           </div>
 
-          <div style={{...heroStyles.metaData,  color: !isMobile ? "white" : lightMode ? "black" : "white",}}>
+          <div
+            style={{
+              ...heroStyles.metaData,
+              color: !isMobile ? "white" : lightMode ? "black" : "white",
+            }}
+          >
             <span>📅 {movie?.release_date?.slice(0, 4) || "N/A"}</span>
             <span style={{ opacity: 0.6 }}>|</span>
             <span>
